@@ -1,0 +1,68 @@
+﻿@*Page: AddUser.cshtml
+    * Date: November 20, 2013
+    * Purpose: Takes in a blank user object, allows user to populate form with its data and submit it
+*@
+@model CompanyPortal.Models.AddVotePage
+@{
+    ViewBag.Title = "Add Vote";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <!-- jQuery UI CSS Reference -->
+    <link href="@Url.Content("~/Content/themes/base/minified/jquery-ui.min.css")" rel="stylesheet" />
+    <!-- Required jQuery and jQuery UI Javascript references -->
+    <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.10.4.min.js")"></script>
+    <script type="text/javascript">
+        if (!Modernizr.inputtypes.date) {
+            $(function () {
+                $("input[type='date']")
+                            .datepicker()
+                            .get(0)
+                            .setAttribute("type", "text");
+            })
+        }
+    </script>
+}
+
+<div class="jumbotron">
+    <h1>Add Vote</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+
+        @using (Html.BeginForm("", "Admin/AddVote"))
+        {
+            if (Model != null)
+            {
+                <fieldset>
+                    <legend>Vote</legend>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.vote.VoteName)
+                        @Html.EditorFor(model => model.vote.VoteName)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.vote.VoteQuestion)
+                        @Html.EditorFor(model => model.vote.VoteQuestion)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.vote.VoteDate)
+                        <input class="datefield" data-val="true" data-val-required="Date is required"
+                               id="vote.VoteDate" name="vote.VoteDate" type="date" value="1/11/1989" />
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.vote.EndDate)
+                        <input class="datefield" data-val="true" data-val-required="Date is required"
+                               id="vote.EndDate" name="vote.EndDate" type="date" value="1/11/1989" />
+                    </div>
+                    @Html.LabelFor(model => model.optionCount)
+                    @Html.DropDownListFor(model => model.optionCount, Model.options)
+                    <p>
+                        <input type="submit" value="Add Vote" />
+                    </p>
+                </fieldset>
+            }
+        }
+
+    </div>
+</div>

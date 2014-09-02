@@ -1,0 +1,41 @@
+﻿@*Page: AddUser.cshtml
+    * Date: November 20, 2013
+    * Purpose: Takes in a blank user object, allows user to populate form with its data and submit it
+*@
+@model CompanyPortal.Models.AddVoteGroupsPage
+@{
+    ViewBag.Title = "Add Vote Groups";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>Add Vote Groups</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+
+        @using (Html.BeginForm("", "Admin/AddVoteGroups"))
+        {
+            if (Model != null)
+            {
+                @Html.HiddenFor(x => x.voteID)
+                if (Model.groups.Count() > 0)
+                {
+                    for (int i = 0; i < Model.groups.Count; i++)
+                    {
+                        @Html.HiddenFor(x => x.groups[i].groupID)
+                        @Html.HiddenFor(x => x.groups[i].groupName)
+                        @Html.CheckBoxFor(x => x.groups[i].isChecked)
+                        @Html.LabelFor(x => x.groups[i].isChecked, Model.groups[i].groupName)
+                        <br />
+                    }
+                    <p>
+                        <input type="submit" value="Add User" />
+                    </p>
+                }
+            }
+        }
+
+    </div>
+</div>

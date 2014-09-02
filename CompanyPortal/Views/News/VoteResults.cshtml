@@ -1,0 +1,39 @@
+﻿@model CompanyPortal.Models.VoteResultsPage
+@{
+    ViewBag.Title = "VoteResults";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>Vote Results</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("VoteResultsPage", "Company", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+        {
+            if (Model != null)
+            {
+                <h2>@Html.DisplayFor(modelItem => Model.ResultVote.VoteName)</h2>
+                <h3>Question ? : @Html.DisplayFor(modelItem => Model.ResultVote.VoteQuestion)</h3>
+                <br />
+                if (Model.VoteResults.Count() > 0)
+                {
+                    foreach (var v in Model.VoteResults)
+                    {
+                        <p>@Html.Label(v.OptionText) : @Html.DisplayFor(modelItem => v.VoteCount) : @Html.DisplayFor(modelItem => v.Percentage)</p>
+                    }
+                }
+                <br />
+                <br />
+                <br />
+                <br />
+                <p>
+                    @Html.DisplayFor(modelItem => modelItem.ResultVote.DaysRemaining)
+                </p>
+                <input id="Submit" type="submit" value="submit" />
+            }
+        }
+
+    </div>
+</div>

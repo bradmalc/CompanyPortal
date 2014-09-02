@@ -1,0 +1,62 @@
+﻿@model CompanyPortal.Models.MainPageObjects
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>Company Portal</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <h1>News</h1>
+        @using (Html.BeginForm("Index", "Index", FormMethod.Post))
+        {
+            if (Model != null)
+            {
+                if (Model.posts.Count() > 0)
+                {
+                    foreach (var p in Model.posts)
+                    {
+                        <h3>@Html.DisplayFor(modelItem => p.PostTitle)</h3>
+                        <p>
+                            @Html.DisplayFor(modelItem => p.PostText)
+                        </p>
+                        <p>
+                            @Html.DisplayFor(modelItem => p.UserName) - @Html.DisplayFor(modelItem => p.PostDate)
+                        </p>
+                    }
+                }
+                else
+                {
+                    <p>No news to show!</p>
+                }
+            }
+        }
+
+    </div>
+    <div class="col-md-4">
+        @using (Html.BeginForm("Index", "Index", FormMethod.Post))
+        {
+            if (Model != null)
+            {
+                if (Model.votes.Count() > 0)
+                {
+                    <h1>Votes</h1>
+                    foreach (var v in Model.votes)
+                    {
+                        <h3>@Html.DisplayFor(modelItem => v.VoteName)</h3>
+                        <p>
+                            @Html.DisplayFor(modelItem => v.VoteQuestion)
+                        </p>
+                        <p style="color:red;">
+                            @Html.DisplayFor(modelItem => v.DaysRemaining) Days Left!
+                        </p>
+                        <p>@Html.ActionLink("Vote", "VotePage", new { VoteID = v.VoteID })</p>
+                    }
+                }
+            }
+        }
+    </div>
+</div>

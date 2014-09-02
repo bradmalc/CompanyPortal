@@ -1,0 +1,64 @@
+﻿@model CompanyPortal.Models.Company
+@{
+    ViewBag.Title = "Edit Company";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>Edit Company</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("", "Company/EditCompany"))
+        {
+            if (Model != null)
+            {
+                <fieldset>
+                    <legend>Company</legend>
+                    @Html.HiddenFor(model => model.CompanyID)
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.CompanyName)
+                        @Html.EditorFor(model => model.CompanyName)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Address)
+                        @Html.EditorFor(model => model.Address)
+                    </div>
+                    <br />
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.City)
+                        @Html.EditorFor(model => model.City)
+                    </div>
+                    <br />
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Province)
+                        @Html.EditorFor(model => model.Province)
+                    </div>
+                    <br />
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PostalCode)
+                        @Html.EditorFor(model => model.PostalCode)
+                    </div>
+                    <br />
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Telephone)
+                        @Html.EditorFor(model => model.Telephone)
+                    </div>
+                    <br />
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.CreatedDate)
+                        @Html.EditorFor(model => model.CreatedDate)
+                    </div>
+                    <br />
+
+                    <p>
+                        <input type="submit" value="Edit" />
+                    </p>
+                </fieldset>
+            }
+        }         
+
+    </div>
+</div>

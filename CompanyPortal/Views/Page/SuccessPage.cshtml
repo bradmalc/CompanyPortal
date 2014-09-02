@@ -1,0 +1,38 @@
+﻿@*Page: AddUser.cshtml
+    * Date: November 20, 2013
+    * Purpose: Takes in a blank user object, allows user to populate form with its data and submit it
+*@
+@model CompanyPortal.Models.SuccessPage
+@{
+    ViewBag.Title = "Success";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>Success</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+
+        @using (Html.BeginForm("", "Page/SuccessPage"))
+        {
+            if (Model != null)
+            {
+                @Html.Label(Model.successMessage)
+                if (Model.buttons.Count() > 0)
+                {
+                    for (int i = 0; i < Model.buttons.Count; i++)
+                    {
+                        using (Html.BeginForm(Model.buttons[i].ActionPage, Model.buttons[i].ControllerPage))
+                        {
+                            <button type="submit">@Model.buttons[i].Text</button>
+                        }
+                        <br />
+                    }
+                }
+            }
+        }
+
+    </div>
+</div>

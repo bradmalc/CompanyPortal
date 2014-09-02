@@ -1,0 +1,57 @@
+﻿@*Page: AddUser.cshtml
+    * Date: November 20, 2013
+    * Purpose: Takes in a blank user object, allows user to populate form with its data and submit it
+*@
+@model CompanyPortal.Models.ErrorPage
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+    <script type="text/javascript">
+        $(function () {
+            $("input[type='date']")
+                        .datepicker()
+                        .get(0)
+                        .setAttribute("type", "text");
+        })
+        
+    </script>
+}
+
+<div class="jumbotron">
+    <h1>Error</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+
+        @using (Html.BeginForm("", "Page/ErrorPage"))
+        {
+            if (Model != null)
+            {
+                if (Model.errorMessage != null)
+                {
+                    @Html.Label(Model.errorMessage)
+                }
+                <p>Please try again and if the problem persists contact us!</p>
+                
+                if (Model.buttons.Count() > 0)
+                {
+                    
+                    for (int i = 0; i < Model.buttons.Count; i++)
+                    {
+                        using (Html.BeginForm(Model.buttons[i].ActionPage, Model.buttons[i].ControllerPage))
+                        {
+                            if(i != 0)
+                            {
+                                <button type="submit">@Model.buttons[i].Text</button>
+                            }
+                        }
+                        <br />
+                    }
+                }
+            }
+        }
+
+    </div>
+</div>

@@ -1,0 +1,50 @@
+﻿@model CompanyPortal.Models.User
+@{
+    ViewBag.Title = "Edit User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>Edit User</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("", "Admin/UserEdit"))
+        {
+            if (Model != null)
+            {
+                <fieldset>
+                    <legend>User</legend>
+                    @Html.HiddenFor(model => model.UserID)
+                    @Html.HiddenFor(model => model.CompanyID)
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.UserName)
+                        @Html.EditorFor(model => model.UserName)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.FirstName)
+                        @Html.EditorFor(model => model.FirstName)
+                    </div>
+                    <br />
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.LastName)
+                        @Html.EditorFor(model => model.LastName)
+                    </div>
+                    <br />
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Password)
+                        @Html.EditorFor(model => model.Password)
+                    </div>
+                    <br />
+
+                    <p>
+                        <input type="submit" value="Edit" />
+                    </p>
+                </fieldset>
+            }
+        }
+
+    </div>
+</div>

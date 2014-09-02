@@ -1,0 +1,28 @@
+﻿@model List<CompanyPortal.Models.User>
+@{
+    ViewBag.Title = "EditUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>Choose User</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h1>Users</h1>
+        @using (Html.BeginForm("SelectUserEdit", "Admin", FormMethod.Post))
+        {
+            if (Model != null)
+            {
+                if (Model.Count() > 0)
+                {
+                    foreach (var v in Model)
+                    {
+                        <p>@Html.ActionLink(v.UserName, "UserEdit", new { UserID = v.UserID })</p>
+                    }
+                }
+            }
+        }
+    </div>
+</div>

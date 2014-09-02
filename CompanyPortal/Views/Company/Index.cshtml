@@ -1,0 +1,82 @@
+﻿@model CompanyPortal.Models.Company
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>Company Portal</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <h1>News</h1>
+        @using (Html.BeginForm("", "Company/Index"))
+        {
+            if (Model != null)
+            {
+                if (Model != null)
+                {
+                    <table>
+                        <tr>
+                            <td>
+                                Company Name
+                            </td>
+                            <td style="width:30%">
+                                @Html.DisplayFor(modelItem => Model.CompanyName)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Address
+                            </td>
+                            <td >
+                                @Html.DisplayFor(modelItem => Model.Address)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                City
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.City)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Province
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Province)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Postal Code
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.PostalCode)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Telephone
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.Telephone)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Created Date
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => Model.CreatedDate)
+                            </td>
+                        </tr>
+                    </table>
+                }
+            }
+        }
+    </div>
+</div>

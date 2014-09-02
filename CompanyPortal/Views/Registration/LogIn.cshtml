@@ -1,0 +1,38 @@
+﻿@*Page: LogIn.cshtml
+    * Date: November 20, 2013
+    * Purpose: Takes in a blank company object for the user to fill in the username and password to send for authentication
+*@
+@model CompanyPortal.Models.User
+@{
+    ViewBag.Title = "Log In";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("Login", "Registration", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.ValidationSummary(true, "Login Failed, check details");
+    <div class="jumbotron">
+        <h1>@ViewBag.Title</h1>
+        
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <fieldset>
+                <div class="editor-label">@Html.LabelFor(u => u.UserName)</div>
+                <div class="editor-field">
+                    @Html.TextBoxFor(u => u.UserName)
+                    @Html.ValidationMessageFor(u => u.UserName)
+                </div>
+                <div class="editor-label">@Html.LabelFor(c => c.Password)</div>
+                <div class="editor-field">
+                    @Html.PasswordFor(c => c.Password)
+                    @Html.ValidationMessageFor(c => c.Password)
+                </div>
+                <br />
+                <input type="submit" value="Log In" />
+            </fieldset>
+        </div>
+    </div>
+}

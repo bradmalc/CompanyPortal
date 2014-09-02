@@ -1,0 +1,47 @@
+﻿@*Page: Register.cshtml
+    * Date: November 20, 2013
+    * Purpose: Takes in a blank company object for the user to fill out and submit
+*@
+@model CompanyPortal.Models.CompanyAndUser
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("Register", "Registration", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.ValidationSummary(true, "Registration Failed, fields.");
+    <div class="jumbotron">
+        <h1>@ViewBag.Title</h1>
+        <fieldset>
+            <div class="editor-label">@Html.LabelFor(c => c.company.CompanyName)</div>
+            <div class="editor-field">
+                @Html.TextBoxFor(c => c.company.CompanyName)
+                @Html.ValidationMessageFor(c => c.company.CompanyName)
+            </div>
+            <div class="editor-label">@Html.LabelFor(c => c.user.UserName)</div>
+            <div class="editor-field">
+                @Html.TextBoxFor(c => c.user.UserName)
+                @Html.ValidationMessageFor(c => c.user.UserName)
+            </div>
+            <div class="editor-label">@Html.LabelFor(c => c.user.Password)</div>
+            <div class="editor-field">
+                @Html.TextBoxFor(c => c.user.Password)
+                @Html.ValidationMessageFor(c => c.user.Password)
+            </div>
+            <div class="editor-label">@Html.LabelFor(c => c.user.FirstName)</div>
+            <div class="editor-field">
+                @Html.TextBoxFor(c => c.user.FirstName)
+                @Html.ValidationMessageFor(c => c.user.FirstName)
+            </div>
+            <div class="editor-label">@Html.LabelFor(c => c.user.LastName)</div>
+            <div class="editor-field">
+                @Html.TextBoxFor(c => c.user.LastName)
+                @Html.ValidationMessageFor(c => c.user.LastName)
+            </div>
+            <br />
+            <input type="submit" value="Register" />
+        </fieldset>
+    </div>
+}

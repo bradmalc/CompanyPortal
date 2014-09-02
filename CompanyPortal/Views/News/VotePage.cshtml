@@ -1,0 +1,39 @@
+﻿@model CompanyPortal.Models.VotePageDetails
+@{
+    ViewBag.Title = "VotePage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron">
+    <h1>Vote</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("VotePage", "News", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+        {
+            if (Model != null)
+            {
+                <h2>@Html.DisplayFor(modelItem => Model.vote.VoteName)</h2>
+                <h3>Question ? : @Html.DisplayFor(modelItem => Model.vote.VoteQuestion)</h3>
+                <br />
+                if (Model.voteOptions.Count() > 0)
+                {
+                    foreach (var v in Model.voteOptions)
+                    {
+                        <p>@Html.RadioButtonFor(b => b.SelectedButton, v.VoteOptionID) @Html.Label(v.OptionText)</p>
+                    }
+                }
+                <br />
+                <br />
+                <br />
+                <br />
+                <p>
+                    @Html.DisplayFor(modelItem => modelItem.vote.DaysRemaining)
+                </p>
+                <input id="Submit" type="submit" value="submit" />
+            }
+        }
+
+    </div>
+</div>
